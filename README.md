@@ -1,4 +1,4 @@
-#Report of Sales And Inventory Management System:
+## Report of Sales And Inventory Management System:
  •	Customer report : We can generate all the reports of  Customer in this
  
  •	Sales report : Generate reports related to Sales
@@ -14,7 +14,7 @@
  
  •  You can create the CSV reports for Customer, Purchasing, Sales.
   
-#Modules of Sales And Inventory Management System:
+## Modules of Sales And Inventory Management System:
 •	Customer module : We can manage all the operations related to Customer from 					this module
 
 •	Sales module : This module is normally developed for managing the Sales 					operations
@@ -26,3 +26,31 @@
 •	Inventory module : Inventory modules performs all the create, read, update 						and delete operations of Inventory
 
 •	Supplier module : It manages all the functionalities of Supplier
+
+## Modules
+
+#### Inventory module
+###### 1. Add Inventory
+		Endpoint: /inventory/addStock
+		Method:   POST
+		Request: 
+				{
+				}
+		Response: 
+				{
+				message: "stock",
+				statusCode:200
+				}
+
+###### 2. Update Inventory
+		Endpoint: /inventory/updateStock
+		Method:   POST
+		Request: 
+				{
+				stockId:123
+				}
+		Response: 
+				{
+				message: "stock",
+				statusCode:200
+				}
