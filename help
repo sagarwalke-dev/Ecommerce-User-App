@@ -1,0 +1,5 @@
+sonar token : 58c37dbdaee59df97f3e28e77eec260355c4660b
+
+
+mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 
+  -Dsonar.login=58c37dbdaee59df97f3e28e77eec260355c4660b

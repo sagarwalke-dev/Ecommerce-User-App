@@ -9,17 +9,17 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Inventory-Management-App</artifactId>
+	<artifactId>Ecommerce-User-App</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Inventory-Management-App</name>
-	<description>Inventory-Management-System-Spring-Boot</description>
+	<description>Ecommerce-User-App-Spring-Boot</description>
 	<properties>
 		<java.version>11</java.version>
 		<project.test.result.directory>${project.build.directory}/test-results</project.test.result.directory>
 		<sonar.host.url>http://localhost:9000</sonar.host.url>
 		<sonar.login>admin</sonar.login>
 		<sonar.password>sonaradmin</sonar.password>
-		
+
 		<sonar.scm.provider>git</sonar.scm.provider>
 		<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
 		<sonar.coverage.jacoco.xmlReportPaths>${project.test.result.directory}/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
@@ -27,15 +27,25 @@
 			**/*.xml
 		</sonar.exclusions>
 		<sonar.coverage.exclusions>
-			**/qualitymeasurementsample/*
+			**/configuration/*, **/entity/*, **/modal/*, **/user/EcommerceUserApplication.class
 		</sonar.coverage.exclusions>
+		<!-- <sonar.coverage.exclusions>
+			**/entity/*
+		</sonar.coverage.exclusions>
+		<sonar.coverage.exclusions>
+			**/modal/*
+		</sonar.coverage.exclusions>
+		<sonar.coverage.exclusions>
+			**/management/InventoryManagementAppApplication.class
+		</sonar.coverage.exclusions>
+		-->
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -57,24 +67,73 @@
 		</dependency>
 
 		<!-- Swagger UI -->
-	
-<dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-ui</artifactId>
-    <version>1.6.4</version>
-</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.4</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-
+			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+
+			<scope>test</scope>
+		</dependency>
+<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    
+    <scope>test</scope>
+</dependency>
+
 	</dependencies>
 
 	<build>
@@ -92,21 +151,30 @@
 				</configuration>
 			</plugin>
 			<plugin>
-			
-    <groupId>org.sonarsource.scanner.maven</groupId>
-    <artifactId>sonar-maven-plugin</artifactId>
-    <version>3.6.0.1398</version>
+
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.6.0.1398</version>
 
 			</plugin>
-			
-			<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
 
+			<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
 
 
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
+				<!--	exclude classes from jacoco covrage -->
+				<configuration>
+					<excludes>
+						<exclude>**/configuration/**/*</exclude>
+						<exclude>**/modal/*</exclude>
+						<exclude>**/entity/*</exclude>
+						<exclude>**/user/EcommerceUserApplication.class</exclude>
+					</excludes>
+
+				</configuration>
 				<executions>
 					<execution>
 						<id>pre-test</id>
@@ -114,6 +182,7 @@
 							<goal>prepare-agent</goal>
 						</goals>
 						<configuration>
+
 							<propertyName>jacocoArgLine</propertyName>
 							<destFile>${project.test.result.directory}/jacoco/jacoco.exec</destFile>
 						</configuration>
