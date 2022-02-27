@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.user.entity.ForgetPasswordRequest;
 import com.ecommerce.user.entity.LoginRequest;
+import com.ecommerce.user.entity.LoginResponse;
 import com.ecommerce.user.modal.User;
 import com.ecommerce.user.service.UserService;
 
@@ -18,19 +19,19 @@ import com.ecommerce.user.service.UserService;
 @CrossOrigin
 public class UserController {
 
-	@Autowired 
+	@Autowired
 	UserService service;
-	
+
 	@PostMapping("/create-account")
 	public ResponseEntity<String> createAccount(@RequestBody User user) {
 		return service.createAccount(user);
 	}
-	
+
 	@PostMapping("/login")
-	public String login(@RequestBody LoginRequest loginRequest) {
-		return null;
+	public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+		return service.login(loginRequest);
 	}
-	
+
 	@PostMapping("/forget-password")
 	public String forgetPassword(@RequestBody ForgetPasswordRequest forgetPasswordRequest) {
 		return null;

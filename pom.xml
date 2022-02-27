@@ -15,14 +15,12 @@
 	<description>Ecommerce-User-App-Spring-Boot</description>
 	<properties>
 		<java.version>11</java.version>
-		<project.test.result.directory>${project.build.directory}/test-results</project.test.result.directory>
 		<sonar.host.url>http://localhost:9000</sonar.host.url>
 		<sonar.login>admin</sonar.login>
 		<sonar.password>sonaradmin</sonar.password>
 
 		<sonar.scm.provider>git</sonar.scm.provider>
 		<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
-		<sonar.coverage.jacoco.xmlReportPaths>${project.test.result.directory}/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 		<sonar.exclusions>
 			**/*.xml
 		</sonar.exclusions>
@@ -195,7 +193,6 @@
 						</goals>
 						<configuration>
 							<dataFile>${project.test.result.directory}/jacoco/jacoco.exec</dataFile>
-							<outputDirectory>${project.test.result.directory}/jacoco</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>

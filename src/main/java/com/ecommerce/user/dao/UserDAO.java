@@ -8,4 +8,5 @@ import com.ecommerce.user.modal.User;
 public interface UserDAO {
 
 	public Integer saveUser(User user);
+	public String getPasswordByUserName(String username); 
 }
