@@ -1,7 +1,6 @@
 package com.ecommerce.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,13 +22,17 @@ public class UserController {
 	UserService service;
 
 	@PostMapping("/create-account")
-	public ResponseEntity<String> createAccount(@RequestBody User user) {
+	public String createAccount(@RequestBody User user) {
 		return service.createAccount(user);
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
-		return service.login(loginRequest);
+	public LoginResponse login(@RequestBody LoginRequest loginRequest) throws Exception {
+		try {
+			return service.login(loginRequest);
+		} catch (Exception e) {
+			throw new Exception();
+		}
 	}
 
 	@PostMapping("/forget-password")

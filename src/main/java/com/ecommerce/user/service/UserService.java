@@ -10,7 +10,7 @@ import com.ecommerce.user.modal.User;
 
 public interface UserService {
 	
-	public ResponseEntity<String> createAccount(User user);
-	public ResponseEntity<LoginResponse> login(LoginRequest loginRequest);
+	public String createAccount(User user);
+	public LoginResponse login(LoginRequest loginRequest);
 	
 }

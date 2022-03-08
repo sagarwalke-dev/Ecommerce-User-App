@@ -1,4 +1,6 @@
 # Ecommerce User Application:
+
+ mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=sagarwalke-dev_Ecommerce-User-App
 ## User Module:
 ##### User
 		model: user -> userId,firstName,lastName,mobile, email,password,country,address,city,state,postalCode
