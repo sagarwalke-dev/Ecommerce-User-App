@@ -15,7 +15,6 @@ import com.ecommerce.user.service.UserService;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin
 public class UserController {
 
 	@Autowired

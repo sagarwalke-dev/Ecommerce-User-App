@@ -25,8 +25,7 @@ public class Base64 {
 			encodeString=new String(org.apache.tomcat.util.codec.binary.Base64.encodeBase64(str.getBytes()));
 			log.info("Base64 encryption end");
 		} catch (Exception e) {
-			log.error("Base64 encrypt error: "+e.getMessage());
-			e.printStackTrace();
+			log.error("Base64 encrypt error: ",e);
 		}
 		return encodeString;
 	}
